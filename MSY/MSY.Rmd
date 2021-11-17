@@ -1,0 +1,31 @@
+---
+title: "Maximum Sustainable Yield"
+author: "Marvin Mace"
+date: "11/17/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Notes on deriving the formula for maximum sustainable yield.
+
+
+# Population Model
+
+Suppose a population grows according to the logistic growth model,
+
+$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right)$$
+where $r$ is the intrinsic rate of increase of the population, $N$ is the number of individuals alive in the population, and $K$ is the maximum population size, also called the carrying capacity. Now we include the effects of harvesting individuals, which removes them from the population,
+
+$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - H$$
+
+where $H$ is the amount of individuals removed. This can be represented as a product of the instantaneous fishing mortality rate $F$ and $N$,
+
+$$ H = FN $$
+
+so that our model now can be written as
+
+$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - FN$$
+
