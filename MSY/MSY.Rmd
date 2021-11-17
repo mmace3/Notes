@@ -27,5 +27,76 @@ $$ H = FN $$
 
 so that our model now can be written as
 
-$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - FN$$
+$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - FN \text{.}$$
+
+To determine the equilibrium points for equation # we set $\frac{dN}{dt} = 0$ and solve for N,
+
+\begin{align*}
+rN \left( 1 - \frac{N}{K} \right) - FN &= 0 \\
+rN - rN\frac{N}{K} - FN &= 0 \\
+N(r - r\frac{N}{K} - F ) &= 0
+\end{align*}
+
+and we see there are two equilibria when
+
+$$ N = 0 $$
+
+or
+
+$$ r - r\frac{N}{K} - F = 0 \text{.}$$
+
+Solving the second equlibrium for $N$ we find the equilibrium population abundance $N_{e}$,
+
+\begin{align*}
+r - r\frac{N}{K} - F &= 0 \\
+r - F &= r\frac{N}{K} \\
+\frac{N}{K} &= \frac{r - F}{r} \\
+N_{e} &= K \left( \frac{r - F}{r} \right) = K \left( \frac{r}{r} - \frac{F}{r} \right) = K \left( 1 - \frac{F}{r} \right)
+\end{align*}
+
+If we define yield $Y$, or the number of fish harvested, as $Y = FN$ then the equilibrium yield is
+
+$$ Y = FN_{e} \text{.}$$
+Substituting equation # into equation #, taking the derivative with respect to F, and then solving for F will give us the equilibrium fishing mortality rate $F_{e}$. First we substitute equation # into equation # and take the derivative with respect to F,
+
+\begin{align*}
+\frac{dY}{dF} =  \frac{d}{dF} Y &= \frac{d}{dF} F \left( K \left( 1 - \frac{F}{r} \right) \right)  \\ 
+&= \frac{d}{dF} F \left(K - \frac{FK}{r} \right) \\
+&= \frac{d}{dF} FK - \frac{F^{2}K}{r} \\
+&= \frac{d}{dF} FK - \frac{d}{dF} \frac{F^{2}K}{r} \\
+&= K - \frac{2FK}{r} \\
+&= K \left(1 - \frac{2F}{r} \right)
+\end{align*}
+
+Then we set the first derivative equal to zero and solve for F to get the equilibrium fishing mortality rate,
+
+$$ \frac{dY}{dT} = K - \frac{2FK}{r} = 0 \\$$ 
+and then
+
+\begin{align*}
+\frac{2FK}{r} &= K \\
+2FK &= Kr \\
+F_{e} &= \frac{Kr}{2K} \\
+F_{e} &= \frac{r}{2}
+\end{align*}
+
+Then we substitute equation # and # into equation # to obtain the equilibrium yield,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
