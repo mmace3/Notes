@@ -2,8 +2,15 @@
 title: "Maximum Sustainable Yield"
 author: "Marvin Mace"
 date: "11/17/2021"
-output: pdf_document
+output: 
+  bookdown::pdf_document2: default
+toc: false
+
+
 ---
+
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -16,20 +23,29 @@ Notes on deriving the formula for maximum sustainable yield.
 
 Suppose a population grows according to the logistic growth model,
 
-$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right)$$
+$$
+\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) (\#eq:a)
+$$
+
 where $r$ is the intrinsic rate of increase of the population, $N$ is the number of individuals alive in the population, and $K$ is the maximum population size, also called the carrying capacity. Now we include the effects of harvesting individuals, which removes them from the population,
 
-$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - H$$
+$$
+\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - H (\#eq:b)
+$$
 
 where $H$ is the amount of individuals removed. This can be represented as a product of the instantaneous fishing mortality rate $F$ and $N$,
 
-$$ H = FN $$
+$$
+H = FN (\#eq:c)
+$$
 
 so that our model now can be written as
 
-$$ \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - FN \text{.}$$
+$$
+\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right) - FN \text{.} (\#eq:d)
+$$
 
-To determine the equilibrium points for equation # we set $\frac{dN}{dt} = 0$ and solve for N,
+To determine the equilibrium points for equation \@ref(eq:d) we set $\frac{dN}{dt} = 0$ and solve for N,
 
 \begin{align*}
 rN \left( 1 - \frac{N}{K} \right) - FN &= 0 \\
@@ -43,9 +59,41 @@ $$ N = 0 $$
 
 or
 
-$$ r - r\frac{N}{K} - F = 0 \text{.}$$
+$$ r - r\frac{N}{K} - F = 0 \text{.} (\#eq:ee)$$
 
-Solving the second equlibrium for $N$ we find the equilibrium population abundance $N_{e}$,
+Since we are not interested in the population when $N = 0$ we will focus on the second equilibrium point. Solving the second equilibrium for $N$ we find the equilibrium population abundance $N_{e}$,
+
+$$
+N_{e} = K \left( 1 - \frac{F}{r} \right) \text{.} (\#eq:e)
+$$
+
+If we define yield, $Y$,  as the number of fish harvested, then $Y = FN$ and the equilibrium yield is
+
+$$ Y = FN_{e} \text{.} (\#eq:f)$$
+Substituting equation \@ref(eq:e) into equation \@ref(eq:f), taking the first derivative with respect to F, setting the first derivative equal to zero, and then solving for F will give us the equilibrium fishing mortality rate $F_{e}$. First we substitute equation \@ref(eq:e) into equation \@ref(eq:f) and take the derivative with respect to F,
+
+$$
+\frac{dY}{dF} = \frac{d}{dF} F \left( K \left( 1 - \frac{F}{r} \right) \right) = K \left(1 - \frac{2F}{r} \right) \text{.}
+$$
+
+Then we set the first derivative equal to zero
+
+$$ \frac{dY}{dT} = K - \frac{2FK}{r} = 0 (\#eq:gg)$$ 
+and then solve for F to get the equilibrium fishing mortality rate,
+
+$$ F_{e} = \frac{r}{2} (\#eq:g)$$
+
+Then we substitute equation \@ref(eq:e) and \@ref(eq:g) into equation \@ref(eq:f) to obtain the equilibrium yield,
+
+$$ Y_{e} = F_{e}N_{e} = \frac{r}{2} \left( K \left( 1 - \frac{\frac{r}{2}}{r} \right) \right) = \frac{Kr}{2} - \frac{K(\frac{r}{2})^{2}}{r} = \frac{Kr}{4}$$
+
+
+
+# Appendix
+
+The details of some calculations presented in the main text are here in the appendix.
+
+Solving equation \@ref(eq:ee) for $N$ to get equilibrium abundance.
 
 \begin{align*}
 r - r\frac{N}{K} - F &= 0 \\
@@ -54,10 +102,8 @@ r - F &= r\frac{N}{K} \\
 N_{e} &= K \left( \frac{r - F}{r} \right) = K \left( \frac{r}{r} - \frac{F}{r} \right) = K \left( 1 - \frac{F}{r} \right)
 \end{align*}
 
-If we define yield $Y$, or the number of fish harvested, as $Y = FN$ then the equilibrium yield is
 
-$$ Y = FN_{e} \text{.}$$
-Substituting equation # into equation #, taking the derivative with respect to F, and then solving for F will give us the equilibrium fishing mortality rate $F_{e}$. First we substitute equation # into equation # and take the derivative with respect to F,
+Substituting equation \@ref(eq:e) into equation \@ref(eq:f), taking the first derivative with respect to F,
 
 \begin{align*}
 \frac{dY}{dF} =  \frac{d}{dF} Y &= \frac{d}{dF} F \left( K \left( 1 - \frac{F}{r} \right) \right)  \\ 
@@ -68,32 +114,13 @@ Substituting equation # into equation #, taking the derivative with respect to F
 &= K \left(1 - \frac{2F}{r} \right)
 \end{align*}
 
-Then we set the first derivative equal to zero and solve for F to get the equilibrium fishing mortality rate,
-
-$$ \frac{dY}{dT} = K - \frac{2FK}{r} = 0 \\$$ 
-and then
-
+Solve equation \@ref(eq:gg) for $F$ to get equilibrium fishing mortality rate,
 \begin{align*}
 \frac{2FK}{r} &= K \\
 2FK &= Kr \\
 F_{e} &= \frac{Kr}{2K} \\
 F_{e} &= \frac{r}{2}
 \end{align*}
-
-Then we substitute equation # and # into equation # to obtain the equilibrium yield,
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
