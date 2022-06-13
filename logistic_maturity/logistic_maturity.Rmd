@@ -32,7 +32,7 @@ which is the form I will use throughout this document. In the parameterization I
 $$
 p'(x) = \frac{1}{1 + e^{-k(x + x_{0})}}
 $$
-where $k \in \mathbb{R}$ is the logistic growth rate or steepeness of the curve and $x_{0} \in \mathbb{R}$ is the age when $p = 0.5$. To see that $p = p'$, let $z$ be arbitrary and suppose $z \in \mathbb{R}$. Now let $x_{0} = a/b$ and $k = b$. Then
+where $k \in \mathbb{R}$ is the logistic growth rate or steepeness of the curve and $x_{0} \in \mathbb{R}$ is the age when $p'(x) = 0.5$. To see that $p = p'$, let $z$ be arbitrary and suppose $z \in \mathbb{R}$. Let $x_{0} = a/b$ and $k = b$. Then
 
 $$
 p'(z) = \frac{1}{1 + e^{-k(z + x_{0})}} = \frac{1}{1 + e^{-b(z + (a/b))}} = \frac{1}{1 + e^{-(a + bz )}} = p(z).
