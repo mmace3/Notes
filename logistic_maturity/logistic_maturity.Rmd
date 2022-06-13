@@ -14,9 +14,9 @@ toc: false
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-I was working with some maturity-at-age/length data that had a different parameterization that I was used to and so I wanted to convert from this new parametrization to the one I was familiar with.
+I was working with some maturity-at-age/length data that had a different parameterization than I was used to and so I wanted to convert from this new parameterization to the one I was familiar with.
 
-In the new parametrization I came across, the proportion of mature individuals at a given age $x$ (or size) is a function $p:\mathbb{R} \rightarrow \mathbb{R}$ defined as
+In the new parameterization I came across, the proportion of mature individuals at a given age $x$ (or size) is a function $p:\mathbb{R}_{\geq0} \rightarrow \mathbb{R}$ defined as
 
 $$
 p(x) = \frac{e^{(a + xb)}}{1 + e^{(a + xb)}}
@@ -27,7 +27,7 @@ where $a, b \in \mathbb{R}$ are estimated parameters. By dividing through by $e^
 $$
 p(x) = \frac{1}{1 + e^{-(a + xb)}},
 $$
-which is the form I will use throughout this document. In the parametrization I am familiar with, the proportion of mature individuals at a given age $x$ (or size) is a function $p':\mathbb{R} \rightarrow \mathbb{R}$ defined as
+which is the form I will use throughout this document. In the parameterization I am familiar with, the proportion of mature individuals at a given age $x$ (or size) is a function $p':\mathbb{R}_{\geq 0} \rightarrow \mathbb{R}$ defined as
 
 $$
 p'(x) = \frac{1}{1 + e^{-k(x + x_{0})}}
@@ -37,8 +37,6 @@ where $k \in \mathbb{R}$ is the logistic growth rate or steepeness of the curve 
 $$
 p'(z) = \frac{1}{1 + e^{-k(z + x_{0})}} = \frac{1}{1 + e^{-b(z + (a/b))}} = \frac{1}{1 + e^{-(a + bz )}} = p(z).
 $$
-
-
-
+Since $z$ was arbitrary this shows that $p'(z)$ = $p(z)$.
 
 
