@@ -1,0 +1,75 @@
+---
+title: "Parametrization of Logistic Selectivity Function in Stock Synthesis"
+author: "Marvin Mace"
+date: "`r Sys.Date()`"
+output:
+  bookdown::pdf_document2: default
+toc: false
+linkcolor: blue
+---
+
+\renewcommand{\[}{\begin{equation}}
+\renewcommand{\]}{\end{equation}}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Short outline for now.
+
+Parameterization of logistic selectivity function in Stock Synthesis is different than a typical logistic function. (See [logisitic function](https://en.wikipedia.org/wiki/Logistic_function) for a detailed description of typical logistic function.) The typical logistic function is
+
+$$
+f(x) = \frac{L}{1 + e^{-k(x-x_{0})}}
+$$
+
+where $k$ is the logistic growth rate or steepnes of curve, $L$ is the maximum value, and $x_{0}$ is the midpoint.
+
+In Stock Synthesis, $f$ is used to describe selectivity at age $x$ (or could insert size here instead) and so $L = 1$ and $x_{0}$ is the age at which $f(x) = 0.5$.
+
+In Stock Synthesis, the logistic selectivity function[^1] describes selectivity at age $x$ as
+
+$$
+s(x) = \frac{1}{1 + e^{-ln(19)(x - p1)/p2}}
+$$
+where $p1$, $p2$ are parameters. In this parameterization, the $p1$ parameter is the same as the $x_{0}$ paremeter from above. So when $x$ is the age when selectivity is $0.5$ (i.e., $x_{0}$ or $p1$) then
+
+$$
+s(x_{0}) = \frac{1}{1 + e^{-ln(19)(p1 - p1)/p2}} = \frac{1}{1 + e^{0}} = \frac{1}{1 + 1} = \frac{1}{2} = 0.5
+$$
+
+[^1]: See [https://nmfs-stock-synthesis.github.io/doc/SS330_User_Manual.html#selectivity-pattern-details](https://nmfs-stock-synthesis.github.io/doc/SS330_User_Manual.html#selectivity-pattern-details)
+
+The logistic selectivity function can also be written as[^2]
+
+$$
+s(x) = (1 + e^{-ln(19)\frac{x - x_{50}}{x_{95}-x_{50}}})^{-1}
+$$
+
+[^2]: see [https://maiakapur.netlify.app/post/ln19/why-ln19/](https://maiakapur.netlify.app/post/ln19/why-ln19/)
+
+where $x_{50}$ is the same as $p1$ and $x_{0}$ above, and $x_{95}$ is the age when selectivity is 0.95 ($s(x) = 0.95$). So when $x = x_{95}$ then
+
+$$
+\frac{x - x_{50}}{x_{95}-x_{50}} = 1
+$$
+and so
+
+$$
+s(x_{95}) = (1 + e^{-ln(19)})^{-1} = 0.95.
+$$
+
+To get from the Stock Synthesis parameterization to the typical parameterization of the logistic function let $k = log(19)/p2$ so that
+
+$$
+f(x) = \frac{1}{1 + e^{-k(x-x_{0})}} = \frac{1}{1 + e^{-\big(\frac{log(19)}{p2} \big)(x-x_{0})}} = \frac{1}{1 + e^{-log(19)\big( \frac{x-x_{0}}{p2} \big)}}.
+$$
+Also we can see that $p2 = x_{95}-x_{50}$.
+
+Why the 19? (still trying to understand this better but rough idea so far)
+
+The reason for the $log(19)$ has to do with the odds ratio and ensuring that when $x = x_{95}$ the selectivity will equal $0.95$. The odds ratio is the probability of an event occuring divided by the probability of that event not occurring. So the odds that selectivity is equal to $0.95$ will be $0.95/0.05$, which is the same as $(19/20)/(1/20) = 19$.
+
+
+Also, see [Why do we use ln(19)?](https://maiakapur.netlify.app/post/ln19/why-ln19/) for a good explanation.
+
